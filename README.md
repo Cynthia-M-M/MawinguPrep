@@ -1,108 +1,80 @@
-# 🌤️ MawinguPrep — AZ-900 AI Exam Prep for African Developers
+# MawinguPrep
 
-> **⚠️ UNOFFICIAL STUDY TOOL** — MawinguPrep is an independent educational tool not affiliated with, sponsored by, or endorsed by Microsoft. All questions are original practice items created based on the public AZ-900 skills outline from Microsoft Learn. This tool does not contain actual exam questions.
+### AZ-900 practice for African developers
 
----
+**Author:** Cynthia Mogaka
 
-## 🌍 Overview
+**Live demo:** [mawinguprep.netlify.app](https://mawinguprep.netlify.app)
 
-**MawinguPrep** ("Mawingu" is Swahili for *Clouds*) is a tailored Microsoft Azure AZ-900 certification preparation dashboard designed specifically for software developers across Kenya, Nigeria, Ghana, South Africa, and the wider African continent.
+**Pitch deck:** [View the MawinguPrep pitch deck](https://canva.link/hmgzevitnljerjw)
 
-It pairs interactive practice questions with an **AI Azure Exam Coach** powered by Claude 3.5 Sonnet that uses **relatable African real-world analogies** (such as *M-Pesa*, *matatus*, *mama mboga*, *chamas*, and *solar microgrids*) to make complex cloud infrastructure concepts stick instantly.
+Mawingu means "clouds" in Swahili. MawinguPrep is an interactive study tool for people preparing for the Microsoft Azure Fundamentals (AZ-900) certification, with examples grounded in everyday African contexts.
 
----
+> **Disclaimer:** MawinguPrep is an independent, unofficial study tool. It is not affiliated with, sponsored by, or endorsed by Microsoft. Practice questions are original and based on the public AZ-900 skills outline; this project does not provide real exam questions.
 
-## 🚀 Key Features
+## Features
 
-1. **Official AZ-900 Domain Coverage**:
-   - **Cloud Concepts (25–30%)**: High availability, scalability, elasticity, CapEx vs. OpEx, cloud service models (IaaS/PaaS/SaaS).
-   - **Azure Architecture & Services (35–40%)**: Regions, Availability Zones, Azure VMs, App Services, Azure Functions, Blob Storage, VNets.
-   - **Azure Management & Governance (30–35%)**: Azure Policy, RBAC, Cost Management, Budgets, ARM Templates, Service Health.
+- Practice questions across Cloud Concepts, Azure Architecture and Services, and Azure Management and Governance.
+- Readiness dashboard that tracks performance across the exam domains and highlights areas to review.
+- AI tutor for explanations and follow-up questions, with examples such as M-Pesa, matatus, local markets, and solar microgrids.
+- Supabase integration for cloud-backed questions and score storage. Without Supabase credentials, the app falls back to its local JSON data store; local file storage is not persistent on serverless hosting.
 
-2. **Smart Readiness Score Tracker**:
-   - Tracks your mastery percentage across each domain.
-   - Dynamic visual radar & progress bars.
-   - Calculates your aggregate exam readiness score (target: 70%+ / 700 on real exam).
-   - Identifies your weakest areas and surfaces targeted study recommendations.
+## Tech Stack
 
-3. **Contextual AI Azure Coach (Claude 3.5 Sonnet)**:
-   - Evaluates both correct and incorrect answers with immediate feedback.
-   - Explains concepts using African daily analogies (e.g., comparing Azure Blob Storage to a communal harvest grain silo, or Azure Functions to paying a boda boda on-demand).
-   - Interactive Q&A chat to ask follow-up questions at any time.
+- Next.js 16 App Router and React 19
+- TypeScript and Tailwind CSS 4
+- Supabase (optional) for hosted PostgreSQL data
+- Anthropic API (optional) for AI tutoring
+- Netlify for hosting
 
-4. **Modern High-Performance Tech Stack**:
-   - Built with **Next.js 16** (App Router & Turbopack), **React 19**, **Tailwind CSS v4**, and **Lucide Icons**.
-   - Backed by **Supabase** (PostgreSQL with Row Level Security) for persistent readiness score tracking.
+## Run Locally
 
----
+### Requirements
 
-## 📁 Project Structure
+- Node.js and npm
+- A Supabase project and Anthropic API key if you want cloud-backed scores and AI tutoring
 
-```text
-mawinguprep/
-├── app/
-│   ├── api/
-│   │   ├── scores/route.ts       # Endpoint to fetch and update readiness scores in Supabase
-│   │   └── tutor/route.ts        # Claude 3.5 Sonnet exam tutor with African context
-│   ├── globals.css              # Custom styling, dark mode accents & animations
-│   ├── layout.tsx               # Root layout with fonts & metadata
-│   └── page.tsx                 # 3-column split layout (Quiz | Chat Coach | Readiness Tracker)
-├── components/
-│   ├── ChatPanel.tsx            # Interactive AI coach interface
-│   ├── QuizCard.tsx             # Interactive question card with options and explanations
-│   └── ReadinessPanel.tsx       # Live readiness metrics and domain radar
-├── lib/
-│   ├── questions.ts             # 15 high-quality seed questions across the 3 domains
-│   └── supabase.ts              # Supabase client initialization
-├── supabase/
-│   └── schema.sql               # Database migration script (tables, policies, seed data)
-├── .env.local                   # API keys and Supabase credentials
-└── README.md
-```
+### Install and start
 
----
-
-## 🛠️ Getting Started
-
-### 1. Prerequisites
-- Node.js 18+ installed
-- A free [Supabase](https://supabase.com) account
-- An [Anthropic](https://console.anthropic.com) API key
-
-### 2. Set Up Supabase
-1. Create a new Supabase project.
-2. Go to the **SQL Editor** in your Supabase dashboard.
-3. Open `supabase/schema.sql` from this repository, paste its contents into the editor, and click **Run**.
-4. Retrieve your **Project URL** and **anon public key** from Project Settings > API.
-
-### 3. Configure Environment Variables
-Edit `.env.local` in the project root:
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-ANTHROPIC_API_KEY=sk-ant-api03-...
-```
-
-### 4. Run Locally
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
----
+### Environment variables
 
-## 🧠 AI Prompting Strategy
+Create a `.env.local` file in the project root. Supabase and Anthropic are optional for local development; configure them to enable hosted score storage and AI tutoring.
 
-The AI tutor uses a system prompt optimized for rapid cognitive anchoring:
-- **Strict Microsoft Learn Alignment**: Accurate technical definitions for AZ-900.
-- **Everyday African Analogies**: Relatable mental models (M-Pesa API, matatu stage routing, mama mboga inventory).
-- **Concise & Direct**: Explanations under 120 words to prevent cognitive overload during quiz sessions.
-- **Empowering Tone**: Peer-to-peer developer camaraderie from Nairobi, Lagos, or Accra.
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+ANTHROPIC_API_KEY=your-anthropic-api-key
+```
 
----
+To configure Supabase, run [`supabase/schema.sql`](supabase/schema.sql) in the Supabase SQL Editor, then copy the project URL and anon key from the Supabase project settings. Never commit `.env.local` or expose the Anthropic API key in client-side code.
 
-## 📄 License & Disclaimer
-This project is an open educational resource built for the African tech developer community. Microsoft and Azure are registered trademarks of Microsoft Corporation.
+## Deploy
+
+The production site is hosted on Netlify. For another deployment, set the environment variables in the host's environment settings and use:
+
+```bash
+npm run build
+```
+
+For persistent scores in production, configure `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Set `ANTHROPIC_API_KEY` to enable the AI tutor.
+
+## Project Structure
+
+```text
+app/                 Next.js pages and API routes
+components/          Quiz, chat, readiness, and database UI
+data/database.json   Local fallback data
+lib/                 Database, question, and Supabase utilities
+supabase/schema.sql  Supabase schema and policies
+```
+
+## License and Trademarks
+
+This project is an educational resource for the African developer community. Microsoft and Azure are trademarks of Microsoft Corporation. No affiliation or endorsement is implied.
