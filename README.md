@@ -8,6 +8,8 @@
 
 **Pitch deck:** [View the MawinguPrep pitch deck](https://canva.link/hmgzevitnljerjw)
 
+**Video demo:** [Watch MawinguPrep_HackathonDemo.mp4](https://1drv.ms/v/c/2bb2f9afc8ae1149/IQA5ufm67VqiRpu5dT7wP59SAVverJ9PxxhpLpd3Duoa9NA?e=b6jOcR)
+
 Mawingu means "clouds" in Swahili. MawinguPrep is an interactive study tool for people preparing for the Microsoft Azure Fundamentals (AZ-900) certification, with examples grounded in everyday African contexts.
 
 > **Disclaimer:** MawinguPrep is an independent, unofficial study tool. It is not affiliated with, sponsored by, or endorsed by Microsoft. Practice questions are original and based on the public AZ-900 skills outline; this project does not provide real exam questions.
